@@ -1,0 +1,19 @@
+.header{
+    background-color: #242424;
+    color: white;
+    padding: 1rem;
+    
+}
+
+main{
+    padding: 2rem 0;
+    background-color: lightgray;
+    min-height: calc(100vh - 130px);
+}
+
+.card-review{
+    width: 20rem;
+    
+}
+
+

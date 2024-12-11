@@ -1,5 +1,4 @@
-
-
+import { Link } from 'react-router-dom'
 import SeeReview from '../components/SeeReviewCard'
 
 export default function ReviewScreen(){
@@ -33,7 +32,10 @@ export default function ReviewScreen(){
     return(
         <>
             <div className='container'>
-                {reviews.map(review => <SeeReview key={review.id} review={review}/>)}
+                <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3'>
+                    {reviews.map(review => (<div key={review.id} className='col'><SeeReview  review={review}/> </div>))}
+                </div>
+                <Link to={`/`} className="card-link my-3">return home page</Link>
             </div>
         
         </>
