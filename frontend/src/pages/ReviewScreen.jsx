@@ -1,34 +1,23 @@
-import { Link } from 'react-router-dom'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Link, useParams } from 'react-router-dom'
 import SeeReview from '../components/SeeReviewCard'
+import { useContext, useEffect } from 'react'
+import AppContext from '../context/appContext'
 
 export default function ReviewScreen(){
-    const reviews = [
-        {
-            id: 1,
-            username: "Federico",
-            date: "2021-12-31T23:00:00.000Z",
-            review: "Un libro fantastico che mi ha fatto pensare.",
-            vote: 3
+    const { reviews, fetchReviews } = useContext(AppContext)
+    const { id } = useParams()
 
-        },
-        {
-            id: 2,
-            username: "Manuel",
-            date: "2021-12-31T23:00:00.000Z",
-            review: "Un libro fantastico che mi ha fatto pensare.",
-            vote: 5
+    useEffect(() => {
+        if (!reviews || reviews.id !== id) {
+            fetchReviews(id);
+        }
+    }, [id])
 
-        },
-        {
-            id: 3,
-            username: "Giorgia",
-            date: "2021-12-31T23:00:00.000Z",
-            review: "Un libro fantastico che mi ha fatto pensare.",
-            vote: 2
-
-        },
-    ]
-
+    if (!reviews) {
+        return <p>Loading movie details...</p>
+    }
+    
     return(
         <>
             <div className='container'>
