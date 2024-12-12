@@ -33,10 +33,27 @@ export function AppProvider({ children }) {
         })
     }
 
+    function VoteAverage(vote) {/* para colocar as estrelas no filme */
+        const stars = []
+
+        for (let i = 1; i <= 5; i++) {
+            stars.push(
+                <i
+                    key={i}
+                    className={i <= vote ? "bi bi-star-fill" : "bi bi-star"}
+                    style={{ color: i <= vote ? "#FFD700" : "#D3D3D3" }}
+                ></i>
+            )
+        }
+
+        return <>{stars}</>//renderizando os elementos jsx contidos no array stars dentro de um fragmento(os fragmentos permitem agrupar os elementos sem criar nós extras no dom ).
+    }
+
     const values = {
         movies,
         reviews,
-        fetchReviews
+        fetchReviews,
+        VoteAverage
     }
 
     return (
