@@ -9,6 +9,7 @@ const HOST = process.env.HOST
 const PORT = process.env.PORT
 
 
+server.use(express.json())
 server.use(cors())
 
 server.listen(PORT, () => {
