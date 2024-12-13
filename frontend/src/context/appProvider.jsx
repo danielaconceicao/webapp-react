@@ -5,7 +5,11 @@ import AppContext from './appContext'
 
 export function AppProvider({ children }) {
     const [movies, setMovies] = useState([])
-    const [reviews, setReviews] = useState(null)
+    const [reviews, setReviews] = useState("")
+    const [name, setName] = useState("")
+    const [star, setStar] = useState(null)
+    const [reviewForm, setReviewForm] = useState("")
+    const [errorMessageForm, setErrorMessageForm] = useState(null)
 
 
     useEffect(() => {
@@ -53,7 +57,16 @@ export function AppProvider({ children }) {
         movies,
         reviews,
         fetchReviews,
-        VoteAverage
+        VoteAverage,
+        name,
+        setName,
+        star,
+        setStar,
+        reviewForm, 
+        setReviewForm,
+        errorMessageForm,
+        setErrorMessageForm
+
     }
 
     return (

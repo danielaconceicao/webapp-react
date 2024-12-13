@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import SeeReview from '../components/SeeReviewCard'
 import { useContext, useEffect } from 'react'
 import AppContext from '../context/appContext'
+import ReviewForm from '../components/ReviewForm'
 
 export default function ReviewScreen(){
     const { reviews, fetchReviews } = useContext(AppContext)
@@ -21,6 +22,7 @@ export default function ReviewScreen(){
     return(
         <>
             <div className='container'>
+                <ReviewForm movie_id={id} />
                 <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3'>
                     {reviews.map(review => (<div key={review.id} className='col'><SeeReview  review={review}/> </div>))}
                 </div>
