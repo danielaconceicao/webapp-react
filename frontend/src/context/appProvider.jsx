@@ -10,14 +10,18 @@ export function AppProvider({ children }) {
     const [star, setStar] = useState(null)
     const [reviewForm, setReviewForm] = useState("")
     const [errorMessageForm, setErrorMessageForm] = useState(null)
+    const [loading, setLoading] = useState(false);
 
 
     useEffect(() => {
+        setLoading(true)
+
         fetch('http://localhost:3004/movies')
             .then(res => res.json())
             .then(data => {
                 /* console.log(data) */
                 setMovies(data.movies)
+                setLoading(false)
             })
         .catch(err => {
             console.log(err)
@@ -25,16 +29,18 @@ export function AppProvider({ children }) {
     }, [])
 
     const fetchReviews = (id) => {
+        setLoading(true)
+
         fetch(`http://localhost:3004/movies/${id}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
                 setReviews(data.reviews || [])
+                setLoading(false)
+                
+            }).catch(err => {
+                console.log(err)
             })
-
-        .catch(err => {
-            console.log(err)
-        })
     }
 
     function VoteAverage(vote) {/* para colocar as estrelas no filme */
@@ -65,8 +71,8 @@ export function AppProvider({ children }) {
         reviewForm, 
         setReviewForm,
         errorMessageForm,
-        setErrorMessageForm
-
+        setErrorMessageForm,
+        loading
     }
 
     return (

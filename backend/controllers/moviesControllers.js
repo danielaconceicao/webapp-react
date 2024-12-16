@@ -16,7 +16,7 @@ function show(req, res){
 
     const id = req.params.id
     const sql = `SELECT * FROM movies WHERE id = ?`
-    const reviewsSql = `SELECT * FROM reviews WHERE movie_id = ?`
+    const reviewsSql = `SELECT * FROM reviews WHERE movie_id = ? ORDER BY id DESC`
     
     connection.query(sql, [id], (err, results) => {
         if (err) return res.status(500).json({ err: err })
@@ -47,7 +47,7 @@ function create(req, res){
     
     //calculando a data atual
     const now = new Date()
-    const reviewDate = `${now.getFullYear()}-${now.getMonth()}-${now.getDay()}`
+    const reviewDate = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
 
     //(INSERT INTO REVIEW) => vai ta inserindo os dados na tabela reviews
     //(SET name, vote, text, movie_id, create_at) => especifica as colunas onde os valores serao inseridos

@@ -46,7 +46,6 @@ export default function ReviewForm({movie_id}){
     }
 
 
-
     return(
         <div className="container">
             <div className="text-end"><button onClick={HandleFormToggle} className="btn btn-dark mb-2" >Write a review</button></div>
